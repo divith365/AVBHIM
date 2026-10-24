@@ -671,6 +671,437 @@
     font-size:11px;
   }
 }
+
+/* Floating Action Bar & Chatbot Widget */
+.fab{
+  position:fixed;
+  z-index:990;
+  right:18px;
+  bottom:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.fab a{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:white;
+  box-shadow:0 4px 14px rgba(0,0,0,.35);
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s;
+}
+.fab a:hover{
+  transform:scale(1.15);
+  box-shadow:0 6px 18px rgba(0,0,0,.5);
+}
+.fab .call{background:var(--orange)}
+.fab .wa{background:#19a95b}
+
+/* Chat Launcher Button with Real Lady Avatar */
+.chat-fab-wrap{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.chat-fab-btn{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  padding:0;
+  margin:0;
+  border:2.5px solid #25bce9;
+  background:#071c2d;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(37,188,233,.45),0 0 12px rgba(37,188,233,.3);
+  position:relative;
+  overflow:visible;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;
+}
+.chat-fab-btn:hover{
+  transform:scale(1.12);
+  box-shadow:0 8px 26px rgba(37,188,233,.6),0 0 18px rgba(37,188,233,.45);
+}
+.chat-fab-img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+}
+.chat-fab-pulse{
+  position:absolute;
+  bottom:1px;
+  right:1px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:#20c7b5;
+  border:2px solid #071522;
+  box-shadow:0 0 8px #20c7b5;
+  animation:onlinePulse 2s infinite ease-in-out;
+}
+@keyframes onlinePulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.25);opacity:.75}
+}
+
+/* Chat Tooltip Bubble */
+.chat-tooltip{
+  position:absolute;
+  right:calc(100% + 12px);
+  top:50%;
+  transform:translateY(-50%);
+  background:linear-gradient(135deg,rgba(7,21,34,.96),rgba(11,36,56,.96));
+  border:1px solid rgba(37,188,233,.4);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  color:#fff;
+  padding:6px 12px 6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 12px rgba(37,188,233,.18);
+  pointer-events:auto;
+  cursor:pointer;
+  animation:tooltipFloat 3s ease-in-out infinite;
+}
+.chat-tooltip:after{
+  content:"";
+  position:absolute;
+  right:-6px;
+  top:50%;
+  transform:translateY(-50%);
+  border-width:6px 0 6px 6px;
+  border-style:solid;
+  border-color:transparent transparent transparent rgba(11,36,56,.96);
+}
+@keyframes tooltipFloat{
+  0%,100%{transform:translateY(-50%)}
+  50%{transform:translateY(-58%)}
+}
+.tooltip-close{
+  background:transparent;
+  border:none;
+  color:#a2c0d4;
+  font-size:11px;
+  cursor:pointer;
+  padding:2px 4px;
+  line-height:1;
+}
+.tooltip-close:hover{color:#fff}
+
+/* Chatbot Window Container */
+.chatbot-window{
+  position:fixed;
+  bottom:88px;
+  right:18px;
+  width:min(380px,calc(100vw - 32px));
+  height:min(540px,calc(100vh - 120px));
+  background:linear-gradient(180deg,#061624 0%,#082035 50%,#040f1a 100%);
+  border:1px solid rgba(37,188,233,.38);
+  border-radius:20px;
+  box-shadow:0 24px 60px rgba(0,0,0,.7),0 0 35px rgba(37,188,233,.18);
+  z-index:1000;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  opacity:0;
+  transform:scale(.92) translateY(20px);
+  pointer-events:none;
+  transition:opacity .28s cubic-bezier(.16,1,.3,1),transform .28s cubic-bezier(.16,1,.3,1);
+}
+.chatbot-window.is-open{
+  opacity:1;
+  transform:scale(1) translateY(0);
+  pointer-events:auto;
+}
+
+/* Chatbot Header */
+.chatbot-header{
+  padding:14px 16px;
+  background:linear-gradient(135deg,rgba(7,24,40,.95) 0%,rgba(14,46,72,.92) 100%);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.chatbot-header-profile{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.chatbot-avatar-wrap{
+  position:relative;
+  width:40px;
+  height:40px;
+  flex-shrink:0;
+}
+.chatbot-header-img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  border:1.5px solid #25bce9;
+}
+.chat-status-dot{
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#20c7b5;
+  border:1.5px solid #061624;
+  box-shadow:0 0 6px #20c7b5;
+}
+.chatbot-header-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.2;
+}
+.chatbot-header-name{
+  font-family:Manrope,sans-serif;
+  font-size:15px;
+  font-weight:800;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.ai-badge{
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  background:rgba(37,188,233,.2);
+  color:var(--blue);
+  border:1px solid rgba(37,188,233,.35);
+  padding:2px 7px;
+  border-radius:99px;
+}
+.chatbot-header-sub{
+  font-size:11px;
+  color:#a5c7dd;
+  margin-top:2px;
+}
+.chatbot-header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.chat-action-btn{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  transition:background .2s;
+}
+.chat-action-btn:hover{
+  background:rgba(255,255,255,.18);
+}
+.chat-close-btn{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:13px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  transition:background .2s;
+}
+.chat-close-btn:hover{
+  background:rgba(244,119,33,.8);
+}
+
+/* Chat Messages Area */
+.chatbot-messages{
+  flex:1;
+  overflow-y:auto;
+  padding:16px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  scroll-behavior:smooth;
+}
+.chat-msg{
+  display:flex;
+  gap:9px;
+  align-items:flex-end;
+  max-width:88%;
+}
+.bot-msg{
+  align-self:flex-start;
+}
+.user-msg{
+  align-self:flex-end;
+  flex-direction:row-reverse;
+}
+.chat-msg-avatar{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid #25bce9;
+  flex-shrink:0;
+}
+.chat-bubble{
+  padding:11px 14px;
+  border-radius:14px;
+  font-size:13px;
+  line-height:1.55;
+  color:#e4f2fb;
+}
+.bot-msg .chat-bubble{
+  background:rgba(12,38,60,.85);
+  border:1px solid rgba(37,188,233,.25);
+  border-bottom-left-radius:4px;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+.bot-msg .chat-bubble p{
+  margin:0 0 6px;
+}
+.bot-msg .chat-bubble p:last-child{
+  margin:0;
+}
+.bot-msg .chat-bubble strong{
+  color:#fff;
+  font-weight:700;
+}
+.bot-msg .chat-bubble a{
+  color:var(--blue);
+  text-decoration:underline;
+  font-weight:700;
+}
+.user-msg .chat-bubble{
+  background:linear-gradient(135deg,#1378d3,#25bce9);
+  color:#fff;
+  border-bottom-right-radius:4px;
+  box-shadow:0 4px 14px rgba(19,120,211,.35);
+}
+
+/* Quick Suggestion Chips */
+.chat-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:4px;
+}
+.chat-chip{
+  background:rgba(37,188,233,.1);
+  border:1px solid rgba(37,188,233,.3);
+  color:#aae0f5;
+  font-size:11.5px;
+  font-weight:700;
+  padding:6px 11px;
+  border-radius:99px;
+  cursor:pointer;
+  transition:all .2s ease;
+  font-family:'DM Sans',sans-serif;
+}
+.chat-chip:hover{
+  background:rgba(37,188,233,.25);
+  border-color:var(--blue);
+  color:#fff;
+  transform:translateY(-1px);
+}
+
+/* Chat Typing Animation */
+.chat-typing{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:4px 14px 10px;
+}
+.typing-bubble{
+  background:rgba(12,38,60,.85);
+  border:1px solid rgba(37,188,233,.2);
+  padding:8px 12px;
+  border-radius:12px;
+  display:flex;
+  gap:4px;
+}
+.typing-bubble span{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--blue);
+  animation:typeBounce 1.2s infinite ease-in-out;
+}
+.typing-bubble span:nth-child(2){animation-delay:.2s}
+.typing-bubble span:nth-child(3){animation-delay:.4s}
+@keyframes typeBounce{
+  0%,100%{transform:translateY(0);opacity:.4}
+  50%{transform:translateY(-4px);opacity:1}
+}
+
+/* Chat Input Row */
+.chatbot-input-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  background:rgba(5,16,26,.95);
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.chatbot-input{
+  flex:1;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;
+  padding:9px 12px;
+  color:#fff;
+  font-size:12.5px;
+  outline:none;
+  font-family:inherit;
+  transition:border-color .2s;
+}
+.chatbot-input:focus{
+  border-color:var(--blue);
+}
+.chatbot-input::placeholder{
+  color:#7391a3;
+}
+.chatbot-send-btn{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:none;
+  background:linear-gradient(135deg,var(--blue2),var(--blue));
+  color:#041525;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition:transform .2s,filter .2s;
+  flex-shrink:0;
+}
+.chatbot-send-btn:hover{
+  transform:scale(1.08);
+  filter:brightness(1.15);
+}
+@media(max-width:500px){
+  .chatbot-window{
+    bottom:80px;
+    right:12px;
+    width:calc(100vw - 24px);
+    height:min(500px,calc(100vh - 100px));
+  }
+}
+
 </style>
 </head>
 <body>
@@ -936,7 +1367,83 @@
     </div>
   </div>
 </footer>
-<div class="fab"><a class="call" href="tel:+919606488288" aria-label="Call AVBIMsoft Solutions"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1.1.4 2.3.6 3.6.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.6 3.6a1 1 0 0 1-.2 1z"/></svg></a><a class="wa" href="https://wa.me/919606488288?text=Hello%20AVBIMsoft%20Solutions%2C%20I%20would%20like%20to%20enquire%20about%20your%20BIM%20and%20engineering%20services.%20Please%20share%20more%20details." target="_blank" rel="noopener" aria-label="Chat with AVBIMsoft Solutions on WhatsApp"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6-3.5-8.3ZM12.1 21.6h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.7 4.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.8 5.1.8.3 1.4.5 1.9.6.8.3 1.5.2 2.1.1.7-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/></svg></a></div>
+
+<!-- Chatbot Floating Launcher Button (Above Call Icon) -->
+<div class="fab">
+  <div class="chat-fab-wrap">
+    <div class="chat-tooltip" id="chatTooltip">
+      <span>👋 Chat with Maya</span>
+      <button type="button" class="tooltip-close" id="tooltipClose" aria-label="Close tooltip">✕</button>
+    </div>
+    <button type="button" class="chat-fab-btn" id="chatOpenBtn" aria-label="Chat with Maya - AVBIMsoft Assistant">
+      <img src="assets/chat_lady_avatar.jpg" alt="Maya - AVBIMsoft Digital Assistant" class="chat-fab-img" width="48" height="48">
+      <span class="chat-fab-pulse"></span>
+    </button>
+  </div>
+  <a class="call" href="tel:+919606488288" aria-label="Call AVBIMsoft Solutions" title="Call Us"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1.1.4 2.3.6 3.6.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.6 3.6a1 1 0 0 1-.2 1z"/></svg></a>
+  <a class="wa" href="https://wa.me/919606488288?text=Hello%20AVBIMsoft%20Solutions%2C%20I%20would%20like%20to%20enquire%20about%20your%20BIM%20and%20engineering%20services.%20Please%20share%20more%20details." target="_blank" rel="noopener" aria-label="Chat with AVBIMsoft Solutions on WhatsApp" title="WhatsApp Us"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6-3.5-8.3ZM12.1 21.6h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.7 4.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.8 5.1.8.3 1.4.5 1.9.6.8.3 1.5.2 2.1.1.7-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/></svg></a>
+</div>
+
+<!-- Chatbot Window -->
+<div class="chatbot-window" id="chatbotWindow" aria-hidden="true" role="dialog" aria-label="AVBIMsoft AI Assistant Chat">
+  <div class="chatbot-header">
+    <div class="chatbot-header-profile">
+      <div class="chatbot-avatar-wrap">
+        <img src="assets/chat_lady_avatar.jpg" alt="Maya - AVBIMsoft Consultant" class="chatbot-header-img" width="40" height="40">
+        <span class="chat-status-dot"></span>
+      </div>
+      <div class="chatbot-header-text">
+        <div class="chatbot-header-name">Maya <span class="ai-badge">BIM Consultant</span></div>
+        <div class="chatbot-header-sub">AVBIMsoft Solutions • Active Now</div>
+      </div>
+    </div>
+    <div class="chatbot-header-actions">
+      <a href="https://wa.me/919606488288?text=Hello%20Maya%2C%20I%20would%20like%20to%20discuss%20a%20project%20with%20AVBIMsoft." target="_blank" rel="noopener" class="chat-action-btn" title="Chat on WhatsApp" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6-3.5-8.3ZM12.1 21.6h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.8 9.8 0 1 1 8.7 4.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.8 5.1.8.3 1.4.5 1.9.6.8.3 1.5.2 2.1.1.7-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/></svg>
+      </a>
+      <button type="button" class="chat-close-btn" id="chatCloseBtn" aria-label="Close Chat">✕</button>
+    </div>
+  </div>
+
+  <div class="chatbot-messages" id="chatMessages">
+    <!-- Bot Welcome Message -->
+    <div class="chat-msg bot-msg">
+      <img src="assets/chat_lady_avatar.jpg" alt="Maya" class="chat-msg-avatar" width="26" height="26">
+      <div class="chat-bubble">
+        <p>Hello! 👋 I'm <strong>Maya</strong>, your AVBIMsoft engineering consultant.</p>
+        <p>How can I help you today? Ask me about our <strong>Scan to BIM</strong>, <strong>Drone Surveying</strong>, <strong>3D Revit Models</strong>, <strong>GIS Topography</strong>, or get a quick project quote!</p>
+      </div>
+    </div>
+
+    <!-- Quick Suggestion Chips -->
+    <div class="chat-chips" id="chatChips">
+      <button type="button" class="chat-chip" data-query="Scan to BIM">🏢 Scan to BIM &amp; LOD</button>
+      <button type="button" class="chat-chip" data-query="Drone Survey">🛸 Drone &amp; LiDAR</button>
+      <button type="button" class="chat-chip" data-query="Revit Modeling">📐 Revit 3D Models</button>
+      <button type="button" class="chat-chip" data-query="GIS Mapping">🗺️ GIS &amp; Topography</button>
+      <button type="button" class="chat-chip" data-query="Accuracy">⏱️ Turnaround &amp; Accuracy</button>
+      <button type="button" class="chat-chip" data-query="Quote">💰 Request a Quote</button>
+      <button type="button" class="chat-chip" data-query="Contact">📞 Phone &amp; Office</button>
+    </div>
+  </div>
+
+  <!-- Typing Indicator -->
+  <div class="chat-typing" id="chatTyping" style="display:none">
+    <img src="assets/chat_lady_avatar.jpg" alt="Maya" class="chat-msg-avatar" width="24" height="24">
+    <div class="typing-bubble">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- Chat Input Row -->
+  <form class="chatbot-input-row" id="chatForm">
+    <input type="text" class="chatbot-input" id="chatInput" placeholder="Ask Maya about our services..." autocomplete="off">
+    <button type="submit" class="chatbot-send-btn" id="chatSendBtn" aria-label="Send Message">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </form>
+</div>
+
 <script>
 
 const siteLoader=document.getElementById('siteLoader');
@@ -1133,5 +1640,144 @@ const progress=document.getElementById('progress');function updateProgress(){con
 const menuToggle=document.getElementById('menuToggle'),navLinks=document.getElementById('navLinks');menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'×':'☰'});navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰'}));
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));document.getElementById('year').textContent=new Date().getFullYear();
 document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const f=e.currentTarget;const body='Name: '+f.name.value+'\nEmail: '+f.email.value+'\n\n'+f.message.value;location.href='mailto:info@avbimsoft.com?subject='+encodeURIComponent(f.subject.value)+'&body='+encodeURIComponent(body);document.getElementById('formNote').textContent='Your email app should open with the enquiry prepared. Please send it from your email app.'});
+
+// AVBIMsoft Interactive Chatbot
+(function initChatbot(){
+  const chatWindow = document.getElementById('chatbotWindow');
+  const chatOpenBtn = document.getElementById('chatOpenBtn');
+  const chatCloseBtn = document.getElementById('chatCloseBtn');
+  const chatTooltip = document.getElementById('chatTooltip');
+  const tooltipClose = document.getElementById('tooltipClose');
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatTyping = document.getElementById('chatTyping');
+  const chatChips = document.getElementById('chatChips');
+
+  if(!chatWindow || !chatOpenBtn) return;
+
+  function toggleChat(open){
+    const isOpen = (open !== undefined) ? open : !chatWindow.classList.contains('is-open');
+    chatWindow.classList.toggle('is-open', isOpen);
+    chatWindow.setAttribute('aria-hidden', String(!isOpen));
+    if(isOpen){
+      if(chatTooltip) chatTooltip.style.display = 'none';
+      if(chatInput) setTimeout(()=>chatInput.focus(), 250);
+      scrollChat();
+    }
+  }
+
+  chatOpenBtn.addEventListener('click', ()=>toggleChat());
+  if(chatCloseBtn) chatCloseBtn.addEventListener('click', ()=>toggleChat(false));
+  if(chatTooltip) chatTooltip.addEventListener('click', (e)=>{
+    if(e.target === tooltipClose) return;
+    toggleChat(true);
+  });
+  if(tooltipClose) tooltipClose.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    chatTooltip.style.display = 'none';
+  });
+
+  function scrollChat(){
+    if(!chatMessages) return;
+    setTimeout(()=>{
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 60);
+  }
+
+  function appendUserMessage(text){
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg user-msg';
+    msg.innerHTML = '<div class="chat-bubble">' + escapeHtml(text) + '</div>';
+    chatMessages.appendChild(msg);
+    scrollChat();
+  }
+
+  function appendBotMessage(htmlContent){
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg bot-msg';
+    msg.innerHTML = '<img src="assets/chat_lady_avatar.jpg" alt="Maya" class="chat-msg-avatar" width="26" height="26"><div class="chat-bubble">' + htmlContent + '</div>';
+    chatMessages.appendChild(msg);
+    scrollChat();
+  }
+
+  function escapeHtml(str){
+    const p = document.createElement('p');
+    p.textContent = str;
+    return p.innerHTML;
+  }
+
+  function getBotResponse(q){
+    const lower = q.toLowerCase();
+
+    if(lower.includes('scan to bim') || lower.includes('lod') || lower.includes('point cloud') || lower.includes('laser scan')){
+      return '<p>🏢 <strong>Scan to BIM Services:</strong></p><p>We convert terrestrial 3D laser scans and LiDAR point clouds into accurate parametric <strong>Autodesk Revit &amp; IFC BIM models</strong>.</p><p>• <strong>LOD Levels:</strong> LOD 200, 300, 350 &amp; 400<br>• <strong>Accuracy:</strong> Millimetric (±2mm)<br>• <strong>Disciplines:</strong> Architectural, Structural &amp; MEP as-builts with clash detection.</p><p>Would you like a quote for your scanning project?</p>';
+    }
+
+    if(lower.includes('drone') || lower.includes('uav') || lower.includes('aerial') || lower.includes('dem') || lower.includes('dtm') || lower.includes('ortho')){
+      return '<p>🛸 <strong>Drone Surveying &amp; Mapping:</strong></p><p>We deploy high-precision surveying UAV drones and aerial LiDAR to generate:</p><p>• High-resolution orthomosaic maps<br>• Digital Terrain Models (DTM) &amp; Digital Elevation Models (DEM)<br>• 3D textured mesh &amp; topographic contour maps<br>• Ideal for civil engineering, infrastructure, and large acreage.</p>';
+    }
+
+    if(lower.includes('revit') || lower.includes('3d model') || lower.includes('cad') || lower.includes('as-built') || lower.includes('clash')){
+      return '<p>📐 <strong>3D Revit &amp; BIM Modeling:</strong></p><p>Our dedicated BIM team delivers comprehensive 3D digital twins:</p><p>• Architecture, Structural &amp; MEP coordination<br>• ISO 19650 BIM execution standards<br>• Navisworks clash detection &amp; 2D fabrication drawing sheets.</p>';
+    }
+
+    if(lower.includes('gis') || lower.includes('satellite') || lower.includes('map') || lower.includes('topograph')){
+      return '<p>🗺️ <strong>GIS Topography &amp; Analytics:</strong></p><p>We produce rich spatial datasets and municipal maps:</p><p>• Vector &amp; raster spatial layers for ArcGIS &amp; QGIS<br>• Land-use analytics &amp; utility mapping<br>• Multi-spectral satellite environmental monitoring.</p>';
+    }
+
+    if(lower.includes('accuracy') || lower.includes('turnaround') || lower.includes('time') || lower.includes('delivery') || lower.includes('precision')){
+      return '<p>⏱️ <strong>Precision &amp; Global Delivery:</strong></p><p>• <strong>Accuracy:</strong> Millimetric precision down to ±2mm.<br>• <strong>QA/QC:</strong> Every model goes through 2-tier senior engineering verification.<br>• <strong>Turnaround:</strong> Rapid milestones tailored to your schedule.<br>• <strong>Coverage:</strong> Serving clients across USA, India, and globally 24/7.</p>';
+    }
+
+    if(lower.includes('quote') || lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('estimate')){
+      return '<p>💰 <strong>Request a Project Quote:</strong></p><p>We provide tailored, competitive estimates based on square footage, scan density, and required LOD level.</p><p>• <a href="#contact">Fill our Quick Enquiry Form</a><br>• <strong>Email:</strong> <a href="mailto:info@avbimsoft.com">info@avbimsoft.com</a><br>• <strong>India:</strong> <a href="tel:+919606488288">+91 96064 88288</a><br>• <strong>USA:</strong> <a href="tel:+12705328711">+1 (270) 532-8711</a></p>';
+    }
+
+    if(lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('address') || lower.includes('location') || lower.includes('office') || lower.includes('india') || lower.includes('usa')){
+      return '<p>📞 <strong>AVBIMsoft Contact Info:</strong></p><p>• <strong>India Phone:</strong> <a href="tel:+919606488288">+91 96064 88288</a><br>• <strong>USA Phone:</strong> <a href="tel:+12705328711">+1 (270) 532-8711</a><br>• <strong>Email:</strong> <a href="mailto:info@avbimsoft.com">info@avbimsoft.com</a><br>• <strong>WhatsApp:</strong> <a href="https://wa.me/919606488288" target="_blank">Chat with us directly</a><br>• <strong>Office:</strong> Rajarajeshwari Nagar, Bengaluru – 560098</p>';
+    }
+
+    if(lower.includes('hi') || lower.includes('hello') || lower.includes('hey') || lower.includes('namaste')){
+      return '<p>Hello there! 👋 Glad to connect with you. How can I assist you with your BIM, laser scanning, drone surveying, or CAD requirements today?</p>';
+    }
+
+    return '<p>Thank you for asking! AVBIMsoft Solutions specializes in <strong>Scan to BIM</strong>, <strong>Geospatial drone mapping</strong>, <strong>Revit modeling</strong>, and <strong>AR/VR visualisations</strong>.</p><p>You can ask me about specific services, or speak directly with our engineering directors at <a href="tel:+919606488288">+91 96064 88288</a> or on <a href="https://wa.me/919606488288" target="_blank">WhatsApp</a>.</p>';
+  }
+
+  function handleUserInput(query){
+    const q = query.trim();
+    if(!q) return;
+
+    appendUserMessage(q);
+    if(chatInput) chatInput.value = '';
+
+    if(chatTyping) chatTyping.style.display = 'flex';
+    scrollChat();
+
+    setTimeout(()=>{
+      if(chatTyping) chatTyping.style.display = 'none';
+      const reply = getBotResponse(q);
+      appendBotMessage(reply);
+    }, 550);
+  }
+
+  if(chatForm){
+    chatForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      if(chatInput) handleUserInput(chatInput.value);
+    });
+  }
+
+  if(chatChips){
+    chatChips.querySelectorAll('.chat-chip').forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        const q = btn.dataset.query || btn.textContent;
+        handleUserInput(q);
+      });
+    });
+  }
+})();
+
 </script>
 </body></html>
