@@ -13,14 +13,20 @@
 /* Branded loading screen */
 #siteLoader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,#0d3650 0%,#071522 60%,#03090e 100%);color:#fff;transition:opacity .6s ease,visibility .6s ease}
 #siteLoader.is-done{opacity:0;visibility:hidden;pointer-events:none}
-.loader-inner{width:min(420px,86vw);text-align:center;position:relative}
+.loader-inner{width:min(580px,94vw);text-align:center;position:relative}
 .loader-emblem-wrap{position:relative;display:inline-flex;justify-content:center;align-items:center;margin:0 auto 18px}
 .loader-glow-ring{position:absolute;inset:-24px;border-radius:50%;background:radial-gradient(circle,rgba(37,188,233,.26) 0%,rgba(244,119,33,.12) 48%,transparent 72%);animation:pulseRing 2.8s ease-in-out infinite;pointer-events:none}
 .loader-logo{width:min(210px,62vw);height:auto;position:relative;z-index:2;filter:drop-shadow(0 14px 34px rgba(37,188,233,.38));animation:logoFloat 3.2s ease-in-out infinite}
 .loader-quote{font:600 15px/1.55 'DM Sans',sans-serif;color:#e1eff7;letter-spacing:.02em;margin-bottom:20px}
 .loader-track{height:4px;background:#ffffff1b;border-radius:99px;overflow:hidden}
 .loader-track span{display:block;height:100%;width:35%;border-radius:99px;background:linear-gradient(90deg,#25bce9,#ff8b37);animation:loaderSweep 1.35s ease-in-out infinite}
-.loader-caption{font-size:11px;color:#8ab0c5;letter-spacing:.22em;text-transform:uppercase;margin-top:14px;font-weight:700}
+.loader-caption{display:inline-flex;align-items:center;justify-content:center;gap:4px;font-size:clamp(10px,2.4vw,12px);letter-spacing:.09em;text-transform:uppercase;margin-top:16px;font-weight:800;white-space:nowrap;overflow:hidden}
+.c-eng{color:#29c5f6;text-shadow:0 0 10px rgba(41,197,246,.5)}
+.c-bim{color:#ff8e32;text-shadow:0 0 10px rgba(255,142,50,.5)}
+.c-geo{color:#00e5a3;text-shadow:0 0 10px rgba(0,229,163,.5)}
+.c-vis{color:#c084fc;text-shadow:0 0 10px rgba(192,132,252,.5)}
+.c-arvr{color:#ff5e7e;text-shadow:0 0 10px rgba(255,94,126,.5)}
+.c-sep{color:rgba(255,255,255,.32);font-weight:400;margin:0 3px}
 @keyframes pulseRing{0%,100%{transform:scale(.92);opacity:.55}50%{transform:scale(1.14);opacity:1}}
 @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes loaderSweep{0%{transform:translateX(-110%)}100%{transform:translateX(390%)}}
@@ -676,7 +682,7 @@
     </div>
     <div class="loader-quote">“Transforming Reality Into Digital Intelligence”</div>
     <div class="loader-track"><span></span></div>
-    <div class="loader-caption">Engineering • BIM • Geospatial • Visualisation • AR/VR</div>
+    <div class="loader-caption"><span class="c-eng">Engineering</span><span class="c-sep">•</span><span class="c-bim">BIM</span><span class="c-sep">•</span><span class="c-geo">Geospatial</span><span class="c-sep">•</span><span class="c-vis">Visualisation</span><span class="c-sep">•</span><span class="c-arvr">AR/VR</span></div>
   </div>
 </div>
 
@@ -926,7 +932,7 @@
 
     <div class="footer-slim-meta">
       <span>© <span id="year"></span> AVBIMsoft Solutions. All rights reserved.</span>
-      <span class="tagline">Engineering • BIM • Geospatial • Visualisation • AR/VR</span>
+      <span class="tagline"><span class="c-eng">Engineering</span> <span class="c-sep">•</span> <span class="c-bim">BIM</span> <span class="c-sep">•</span> <span class="c-geo">Geospatial</span> <span class="c-sep">•</span> <span class="c-vis">Visualisation</span> <span class="c-sep">•</span> <span class="c-arvr">AR/VR</span></span>
     </div>
   </div>
 </footer>
