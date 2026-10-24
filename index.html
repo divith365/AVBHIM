@@ -349,13 +349,13 @@
 .hero-social{
   display:inline-flex;
   align-items:center;
-  gap:12px;
+  gap:8px;
   background:rgba(7,21,34,.84);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
   border:1px solid rgba(255,255,255,.2);
   border-radius:99px;
-  padding:5px 14px;
+  padding:4px 8px;
   box-shadow:0 8px 24px rgba(0,0,0,.35),0 0 16px rgba(37,188,233,.12);
   transition:all .25s ease;
   max-width:100%;
@@ -1126,7 +1126,6 @@
           </div>
           <!-- Hero Social Media Links -->
           <div class="hero-social" aria-label="Follow AVBIMsoft Solutions on social media">
-            <span class="hero-social-label">Connect with us</span>
             <div class="hero-social-icons">
               <a class="social-btn s-ig" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" title="Follow us on Instagram">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -1410,12 +1409,8 @@
 <!-- Chatbot Floating Launcher Button (Above Call Icon) -->
 <div class="fab">
   <div class="chat-fab-wrap">
-    <div class="chat-tooltip" id="chatTooltip">
-      <span>👋 Chat with Maya</span>
-      <button type="button" class="tooltip-close" id="tooltipClose" aria-label="Close tooltip">✕</button>
-    </div>
-    <button type="button" class="chat-fab-btn" id="chatOpenBtn" aria-label="Chat with Maya - AVBIMsoft Assistant">
-      <img src="assets/chat_lady_avatar.webp" alt="Maya - AVBIMsoft Digital Assistant" class="chat-fab-img" width="48" height="48">
+    <button type="button" class="chat-fab-btn" id="chatOpenBtn" aria-label="AVBIMsoft Digital Assistant">
+      <img src="assets/chat_lady_avatar.webp" alt="AVBIMsoft Digital Assistant" class="chat-fab-img" width="48" height="48">
       <span class="chat-fab-pulse"></span>
     </button>
   </div>
@@ -1476,7 +1471,7 @@
 
   <!-- Chat Input Row -->
   <form class="chatbot-input-row" id="chatForm">
-    <input type="text" class="chatbot-input" id="chatInput" placeholder="Ask Maya about our services..." autocomplete="off">
+    <input type="text" class="chatbot-input" id="chatInput" placeholder="Ask about our services..." autocomplete="off">
     <button type="submit" class="chatbot-send-btn" id="chatSendBtn" aria-label="Send Message">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
     </button>
