@@ -204,12 +204,10 @@
   padding:clamp(94px,13vh,114px) 0 clamp(20px,3vh,28px);
 }
 .hero-layout{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:36px;
-  align-items:center;
+  display:block;
+  width:100%;
 }
-.hero-main-box{max-width:660px}
+.hero-main-box{max-width:840px}
 .hero-top-bar{
   display:flex;
   align-items:center;
@@ -283,7 +281,7 @@
 .hero-copy{
   color:#d4e5f2;
   font-size:clamp(14.5px,1.1vw,16px);
-  max-width:580px;
+  max-width:680px;
   line-height:1.55;
   margin:0 0 20px;
   text-shadow:0 2px 10px rgba(0,0,0,.5);
@@ -303,87 +301,31 @@
 .trust-row span{display:flex;align-items:center;gap:7px}
 .trust-row i{font-style:normal;color:var(--blue);font-size:15px}
 
-/* Live Discipline Showcase Card */
-.hero-preview-card{
-  background:rgba(8,24,38,.74);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:20px;
-  padding:24px 22px;
-  box-shadow:0 20px 48px rgba(0,0,0,.4),0 0 24px rgba(37,188,233,.12);
-  transition:opacity .25s ease,transform .25s ease;
-}
-.preview-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.preview-tag{
-  display:inline-block;
-  font-size:10.5px;
-  font-weight:800;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--blue);
-  background:rgba(37,188,233,.14);
-  padding:4.5px 11px;
-  border-radius:20px;
-  border:1px solid rgba(37,188,233,.3);
-}
-.preview-live{
+/* Hero Social Media Links */
+.hero-social{
   display:inline-flex;
   align-items:center;
-  gap:6px;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:#8ab2c9;
-}
-.live-pulse{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#20c7b5;
-  box-shadow:0 0 8px #20c7b5;
-  animation:pillPulse 1.8s infinite ease-in-out;
-}
-.preview-title{
-  font-size:21px;
-  font-weight:800;
-  color:#fff;
-  margin:0 0 8px;
-  letter-spacing:-.02em;
-}
-.preview-desc{
-  font-size:13px;
-  line-height:1.5;
-  color:#b8d0e0;
-  margin:0 0 16px;
-  min-height:38px;
-}
-.preview-specs{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
-.spec-pill{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  font-size:12px;
-  font-weight:600;
-  color:#e1eff7;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.09);
-  padding:6.5px 12px;
-  border-radius:9px;
-}
-.spec-icon{font-style:normal;color:var(--orange);font-weight:800;font-size:13px}
-.preview-footer{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
   gap:12px;
-  padding-top:12px;
-  border-top:1px solid rgba(255,255,255,.1);
+  background:rgba(7,21,34,.84);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:99px;
+  padding:5px 14px;
+  box-shadow:0 8px 24px rgba(0,0,0,.35),0 0 16px rgba(37,188,233,.12);
+  transition:all .25s ease;
 }
-.preview-footer-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8ab2c9}
-
-/* Social icons */
+.hero-social:hover{
+  border-color:rgba(37,188,233,.5);
+  box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 22px rgba(37,188,233,.22);
+}
+.hero-social-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:#9ec2d9;
+}
 .hero-social-icons{display:flex;align-items:center;gap:8px}
 .social-btn{
   width:30px;
@@ -407,7 +349,6 @@
 .social-btn.s-yt{background:#ff0000}
 .social-btn.s-fb{background:#1877f2}
 .social-btn.s-in{background:#0a66c2}
-.hero-social-top{display:none}
 
 /* Carousel Controls */
 .hero-controls{
@@ -474,27 +415,9 @@
 }
 
 @media(max-width:1000px){
-  .hero-layout{gap:22px}
-  .preview-title{font-size:19px}
   .services{grid-template-columns:repeat(2,1fr)}
   .workflow-steps{grid-template-columns:repeat(2,1fr)}
   .industries{grid-template-columns:repeat(3,1fr)}
-  
-}
-@media(max-width:860px){
-  .hero-layout{grid-template-columns:1fr;gap:18px}
-  .hero-preview-card{display:none}
-  .hero-social-top{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    background:rgba(7,21,34,.88);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,.2);
-    border-radius:99px;
-    padding:5px 12px;
-  }
 }
 @media(max-width:760px){
   .header{top:8px;width:calc(100% - 20px);border-radius:14px}
@@ -1140,19 +1063,30 @@
   <!-- Content Layer directly on the images -->
   <div class="container hero-content">
     <div class="hero-layout">
-      <!-- Left Column: Primary Pitch, CTAs & Trust Badges -->
+      <!-- Core Pitch, Social Links, CTAs & Trust Badges -->
       <div class="hero-main-box">
         <div class="hero-top-bar">
           <div class="hero-slide-pill" id="heroSlidePill">
             <span class="pill-dot"></span>
             <span id="heroTopicText">SCAN TO BIM &amp; 3D REALITY CAPTURE</span>
           </div>
-          <!-- Mobile-only social icon cluster -->
-          <div class="hero-social hero-social-top" aria-label="Follow AVBIMsoft Solutions">
-            <a class="social-btn s-ig" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-            <a class="social-btn s-yt" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            <a class="social-btn s-fb" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-            <a class="social-btn s-in" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          <!-- Hero Social Media Links -->
+          <div class="hero-social" aria-label="Follow AVBIMsoft Solutions on social media">
+            <span class="hero-social-label">Connect with us</span>
+            <div class="hero-social-icons">
+              <a class="social-btn s-ig" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" title="Follow us on Instagram">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a class="social-btn s-yt" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube" title="Subscribe to AVBIMsoft on YouTube">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              <a class="social-btn s-fb" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" title="Follow AVBIMsoft on Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a class="social-btn s-in" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn" title="Connect with AVBIMsoft on LinkedIn">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -1169,40 +1103,6 @@
           <span><i>⌖</i> High accuracy</span>
           <span><i>◷</i> On-time delivery</span>
           <span><i>◇</i> Data security</span>
-        </div>
-      </div>
-
-      <!-- Right Column: Frosted Glass Active Discipline Preview Card -->
-      <div class="hero-preview-card" id="heroPreviewCard">
-        <div class="preview-header">
-          <span class="preview-tag" id="heroCardTag">REALITY CAPTURE</span>
-          <span class="preview-live"><span class="live-pulse"></span>ACTIVE DISCIPLINE</span>
-        </div>
-        <h3 class="preview-title" id="heroCardTitle">Scan to BIM Modeling</h3>
-        <p class="preview-desc" id="heroCardDesc">Converting laser scan point clouds into intelligent, parametric Revit BIM models with millimetric accuracy.</p>
-        
-        <div class="preview-specs">
-          <div class="spec-pill"><i class="spec-icon">⌖</i><span id="heroCardSpec1">±2mm Millimetric Precision</span></div>
-          <div class="spec-pill"><i class="spec-icon">▦</i><span id="heroCardSpec2">LOD 200 – LOD 400 BIM</span></div>
-          <div class="spec-pill"><i class="spec-icon">✓</i><span id="heroCardSpec3">Autodesk Revit &amp; IFC</span></div>
-        </div>
-
-        <div class="preview-footer">
-          <span class="preview-footer-label">Connect with us</span>
-          <div class="hero-social-icons">
-            <a class="social-btn s-ig" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" title="Follow us on Instagram">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-            </a>
-            <a class="social-btn s-yt" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube" title="Subscribe to AVBIMsoft on YouTube">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-            <a class="social-btn s-fb" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" title="Follow AVBIMsoft on Facebook">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a class="social-btn s-in" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn" title="Connect with AVBIMsoft on LinkedIn">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-          </div>
         </div>
       </div>
     </div>
@@ -1460,60 +1360,21 @@ document.querySelectorAll('img').forEach(img=>img.addEventListener('error',funct
   this.style.minHeight=this.style.minHeight||'120px';
 }));
 
-// Hero Full-Slide Right-to-Left Carousel & Active Discipline Card Sync
+// Hero Full-Slide Right-to-Left Carousel & Topic Sync
 (function initHeroSlider(){
   const slides = document.querySelectorAll('.hero-slide');
   const tabs = document.querySelectorAll('.hero-tab');
   const pillTitle = document.getElementById('heroTopicText');
-  const cardEl = document.getElementById('heroPreviewCard');
-  const cardTag = document.getElementById('heroCardTag');
-  const cardTitle = document.getElementById('heroCardTitle');
-  const cardDesc = document.getElementById('heroCardDesc');
-  const cardSpec1 = document.getElementById('heroCardSpec1');
-  const cardSpec2 = document.getElementById('heroCardSpec2');
-  const cardSpec3 = document.getElementById('heroCardSpec3');
   const prevBtn = document.getElementById('heroPrev');
   const nextBtn = document.getElementById('heroNext');
   const heroEl = document.querySelector('.hero');
   if(!slides.length) return;
 
-  const slideData = [
-    {
-      topic: 'SCAN TO BIM & 3D REALITY CAPTURE',
-      tag: 'REALITY CAPTURE',
-      title: 'Scan to BIM Modeling',
-      desc: 'Converting laser scan point clouds into intelligent, parametric Revit BIM models with millimetric accuracy.',
-      spec1: '±2mm Millimetric Precision',
-      spec2: 'LOD 200 – LOD 400 BIM',
-      spec3: 'Autodesk Revit & IFC'
-    },
-    {
-      topic: 'GEOSPATIAL & DRONE SURVEYING',
-      tag: 'AERIAL SURVEYING',
-      title: 'Drone & Geospatial Mapping',
-      desc: 'High-resolution photogrammetry, aerial LiDAR and digital elevation modeling across wide-area land assets.',
-      spec1: 'High-Acre Aerial Mapping',
-      spec2: 'DTM, DEM & Orthomosaics',
-      spec3: 'Civil & Topo Precision'
-    },
-    {
-      topic: 'AUTODESK REVIT BIM MODELING',
-      tag: '3D DIGITAL TWIN',
-      title: 'Revit BIM & Coordination',
-      desc: 'Comprehensive architectural, structural and MEP BIM models with clash detection and fabrication sheets.',
-      spec1: 'Arch, Struct & MEP Systems',
-      spec2: 'ISO 19650 BIM Standards',
-      spec3: 'Parametric 3D + 2D Sets'
-    },
-    {
-      topic: 'GIS MAPPING & TERRAIN ANALYSIS',
-      tag: 'SPATIAL INTELLIGENCE',
-      title: 'GIS Topography & Analytics',
-      desc: 'Spatial analytics, terrain modeling, smart utility mapping, and multi-spectral satellite environmental analysis.',
-      spec1: 'ArcGIS, QGIS & Civil 3D',
-      spec2: 'Vector & Raster Spatial Layers',
-      spec3: 'Topography & Land-Use Analytics'
-    }
+  const slideTopics = [
+    'SCAN TO BIM & 3D REALITY CAPTURE',
+    'GEOSPATIAL & DRONE SURVEYING',
+    'AUTODESK REVIT BIM MODELING',
+    'GIS MAPPING & TERRAIN ANALYSIS'
   ];
 
   let currentIdx = 0;
@@ -1547,29 +1408,13 @@ document.querySelectorAll('img').forEach(img=>img.addEventListener('error',funct
       tab.setAttribute('aria-selected', String(isActive));
     });
 
-    const d = slideData[nextIdx];
-    if(d){
-      if(pillTitle){
-        pillTitle.style.opacity = '0';
-        setTimeout(()=>{
-          pillTitle.textContent = d.topic;
-          pillTitle.style.opacity = '1';
-        }, 220);
-      }
-      if(cardEl){
-        cardEl.style.opacity = '0.35';
-        cardEl.style.transform = 'translateY(4px)';
-        setTimeout(()=>{
-          if(cardTag) cardTag.textContent = d.tag;
-          if(cardTitle) cardTitle.textContent = d.title;
-          if(cardDesc) cardDesc.textContent = d.desc;
-          if(cardSpec1) cardSpec1.textContent = d.spec1;
-          if(cardSpec2) cardSpec2.textContent = d.spec2;
-          if(cardSpec3) cardSpec3.textContent = d.spec3;
-          cardEl.style.opacity = '1';
-          cardEl.style.transform = 'translateY(0)';
-        }, 220);
-      }
+    const topic = slideTopics[nextIdx];
+    if(topic && pillTitle){
+      pillTitle.style.opacity = '0';
+      setTimeout(()=>{
+        pillTitle.textContent = topic;
+        pillTitle.style.opacity = '1';
+      }, 220);
     }
 
     currentIdx = nextIdx;
