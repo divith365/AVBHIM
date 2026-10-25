@@ -101,7 +101,20 @@
 .header.is-scrolled .brand-name{
   font-size:18px;
 }
-.brand-name .soft{color:var(--blue);font-weight:800}
+.brand-avbim{
+  background:linear-gradient(115deg, #5caaff 0%, #25bce9 50%, #0665b2 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  display:inline-block;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.brand-name .soft{
+  color:var(--blue);
+  -webkit-text-fill-color:var(--blue);
+  font-weight:800;
+}
 .brand-sub{
   font-family:'DM Sans',sans-serif;
   font-size:9.5px;
@@ -327,45 +340,47 @@
   max-width:640px;
 }
 .hero-actions .btn{padding:11.5px 22px;font-size:13px}
-.btn-hero-video{
+.hero-btn-with-video{
   display:inline-flex;
   align-items:center;
   gap:9px;
-  cursor:pointer;
-  border:1px solid rgba(37,188,233,.5);
-  background:rgba(7,21,34,.72);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  color:#ffffff;
-  transition:all .25s ease;
 }
-.btn-hero-video:hover{
-  background:rgba(37,188,233,.2);
-  border-color:rgba(37,188,233,.9);
-  box-shadow:inset 0 1px 2px rgba(255,255,255,.35),0 10px 28px rgba(37,188,233,.38);
-  transform:translateY(-3px);
-}
-.btn-video-badge{
+.btn-yt-icon{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  background:linear-gradient(135deg,rgba(37,188,233,.4),rgba(19,120,211,.55));
-  border:1px solid rgba(37,188,233,.8);
-  color:#ffffff;
-  box-shadow:0 0 12px rgba(37,188,233,.45);
+  width:46px;
+  height:44px;
+  border-radius:10px;
+  background:rgba(7,21,34,.78);
+  border:1px solid rgba(255,255,255,.24);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.2),0 8px 22px rgba(0,0,0,.35),0 0 14px rgba(255,0,0,.15);
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,background .25s,border-color .25s;
+  cursor:pointer;
   flex-shrink:0;
-  transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+  text-decoration:none;
 }
-.btn-video-badge svg{
-  margin-left:1.5px;
+.btn-yt-icon svg{
+  width:26px;
+  height:19px;
+  display:block;
+  filter:drop-shadow(0 2px 6px rgba(255,0,0,.45));
+  transition:transform .25s ease,filter .25s ease;
 }
-.btn-hero-video:hover .btn-video-badge{
-  transform:scale(1.14);
-  background:linear-gradient(135deg,#25bce9,#1378d3);
-  box-shadow:0 0 18px rgba(37,188,233,.9);
+.btn-yt-icon:hover{
+  background:rgba(255,255,255,.14);
+  border-color:rgba(255,50,50,.7);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.4),0 12px 28px rgba(0,0,0,.45),0 0 20px rgba(255,0,0,.5);
+  transform:translateY(-3px);
+}
+.btn-yt-icon:hover svg{
+  transform:scale(1.12);
+  filter:drop-shadow(0 3px 10px rgba(255,0,0,.75));
+}
+.btn-yt-icon:active{
+  transform:translateY(-1px);
 }
 .trust-row{
   display:flex;
@@ -1117,178 +1132,6 @@
     width:calc(100vw - 24px);
     height:min(500px,calc(100vh - 100px));
   }
-/* Video Modal Lightbox */
-.video-modal{
-  position:fixed;
-  inset:0;
-  z-index:9998;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transition:opacity .32s ease,visibility .32s ease;
-}
-.video-modal.is-open{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-}
-.video-modal-backdrop{
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at 50% 50%,rgba(7,21,34,.9) 0%,rgba(2,8,14,.97) 100%);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  cursor:pointer;
-}
-.video-modal-dialog{
-  position:relative;
-  z-index:2;
-  width:min(940px,calc(100% - 28px));
-  max-height:92vh;
-  display:flex;
-  flex-direction:column;
-  transform:scale(.92) translateY(14px);
-  transition:transform .32s cubic-bezier(.16,1,.3,1);
-}
-.video-modal.is-open .video-modal-dialog{
-  transform:scale(1) translateY(0);
-}
-.video-modal-box{
-  background:linear-gradient(135deg,rgba(11,33,51,.98) 0%,rgba(7,21,34,.99) 100%);
-  border:1px solid rgba(37,188,233,.4);
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 26px 70px rgba(0,0,0,.75),0 0 40px rgba(37,188,233,.25),inset 0 1px 1px rgba(255,255,255,.2);
-  display:flex;
-  flex-direction:column;
-}
-.video-modal-header{
-  padding:14px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid rgba(255,255,255,.1);
-  background:rgba(5,16,26,.75);
-}
-.video-modal-head-left{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.video-modal-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  padding:4px 10px;
-  border-radius:99px;
-  background:rgba(37,188,233,.18);
-  border:1px solid rgba(37,188,233,.45);
-  color:#5ee2ff;
-}
-.video-pill-pulse{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#25bce9;
-  box-shadow:0 0 8px #25bce9;
-  animation:videoPulse 2s ease-in-out infinite;
-}
-@keyframes videoPulse{0%,100%{opacity:.55;transform:scale(.85)}50%{opacity:1;transform:scale(1.25)}}
-.video-modal-title{
-  font-size:clamp(13.5px,1.35vw,16.5px);
-  font-weight:700;
-  color:#ffffff;
-  margin:0;
-  letter-spacing:-.01em;
-}
-.video-modal-close{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:36px;
-  height:36px;
-  border-radius:10px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.18);
-  color:#d4e5f2;
-  cursor:pointer;
-  transition:all .22s ease;
-}
-.video-modal-close:hover{
-  background:rgba(244,119,33,.85);
-  border-color:rgba(255,255,255,.4);
-  color:#ffffff;
-  transform:rotate(90deg) scale(1.05);
-}
-.video-player-container{
-  position:relative;
-  width:100%;
-  background:#02060b;
-  aspect-ratio:16/9;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.video-player-el{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#02060b;
-  display:block;
-}
-.video-modal-footer{
-  padding:13px 22px;
-  background:rgba(5,16,26,.85);
-  border-top:1px solid rgba(255,255,255,.08);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  flex-wrap:wrap;
-}
-.video-tags-list{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  flex-wrap:wrap;
-  color:#b8cfe0;
-  font-size:12px;
-}
-.video-tag-item{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-}
-.video-tag-item span{
-  color:var(--blue);
-  font-weight:800;
-}
-.video-workflow-jump{
-  font-size:12.5px;
-  font-weight:700;
-  color:#5ee2ff;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  transition:color .2s,transform .2s;
-}
-.video-workflow-jump:hover{
-  color:var(--orange);
-  transform:translateX(3px);
-}
-@media(max-width:640px){
-  .video-modal-header{padding:12px 14px}
-  .video-modal-footer{padding:12px 14px;flex-direction:column;align-items:flex-start;gap:8px}
-  .video-tags-list{gap:8px;font-size:11px}
 }
 
 </style>
@@ -1307,7 +1150,7 @@
 </div>
 
 <div class="top-progress" id="progress"></div>
-<header class="header" id="mainHeader"><div class="nav"><a class="brand" href="#home" aria-label="AVBIMsoft Solutions home"><img src="assets/avbim_emblem.webp" alt="AVBIMsoft Logo Emblem" width="40" height="40" class="brand-emblem"><div class="brand-text"><span class="brand-name">AVBIM<span class="soft">soft</span></span><span class="brand-sub">SOLUTIONS</span></div></a><button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="nav-links" id="navLinks"><a href="#home">HOME</a><a href="#about">ABOUT US</a><a href="#services">SERVICES</a><a href="#workflow">HOW IT WORKS</a><a href="#why">WHY US</a><a href="#industries">INDUSTRIES</a><a href="#contact">CONTACT</a><a class="btn btn-orange" href="#contact">REQUEST A QUOTE</a></nav></div></header>
+<header class="header" id="mainHeader"><div class="nav"><a class="brand" href="#home" aria-label="AVBIMsoft Solutions home"><img src="assets/avbim_emblem.webp" alt="AVBIMsoft Logo Emblem" width="40" height="40" class="brand-emblem"><div class="brand-text"><span class="brand-name"><span class="brand-avbim">AVBIM</span><span class="soft">soft</span></span><span class="brand-sub">SOLUTIONS</span></div></a><button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="nav-links" id="navLinks"><a href="#home">HOME</a><a href="#about">ABOUT US</a><a href="#services">SERVICES</a><a href="#workflow">HOW IT WORKS</a><a href="#why">WHY US</a><a href="#industries">INDUSTRIES</a><a href="#contact">CONTACT</a><a class="btn btn-orange" href="#contact">REQUEST A QUOTE</a></nav></div></header>
 <main id="home"><section class="hero">
   <!-- Full-bleed Image Carousel (Right to Left Slide Transitions) -->
   <div class="hero-slider" id="heroSlider" aria-label="AVBIMsoft Solutions Core Disciplines">
@@ -1361,12 +1204,15 @@
         <div class="hero-actions">
           <a class="btn btn-blue" href="#services">EXPLORE SERVICES</a>
           <a class="btn btn-orange" href="#contact">REQUEST A QUOTE</a>
-          <button type="button" class="btn btn-outline btn-hero-video" id="heroPlayVideoBtn" aria-label="Watch How It Works video" aria-haspopup="dialog">
-            <span class="btn-video-badge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l11-6.86a1 1 0 0 0 0-1.68l-11-6.86A1 1 0 0 0 8 5.14z"/></svg>
-            </span>
-            <span>HOW IT WORKS</span>
-          </button>
+          <div class="hero-btn-with-video">
+            <a class="btn btn-outline" href="#workflow">HOW IT WORKS</a>
+            <a class="btn-yt-icon" href="assets/how-it-works.mp4" target="_blank" rel="noopener" id="heroPlayVideoBtn" aria-label="Watch How It Works video" title="Watch How It Works video in new window">
+              <svg viewBox="0 0 28 20" width="26" height="19" aria-hidden="true">
+                <path d="M27.4 3.07a3.46 3.46 0 0 0-2.44-2.45C22.8 0 14 0 14 0S5.2 0 3.04.62A3.46 3.46 0 0 0 .6 3.07C0 5.23 0 9.72 0 9.72s0 4.49.6 6.65a3.46 3.46 0 0 0 2.44 2.45c2.16.62 10.96.62 10.96.62s8.8 0 10.96-.62a3.46 3.46 0 0 0 2.44-2.45c.6-2.16.6-6.65.6-6.65s0-4.49-.6-6.65z" fill="#ff0000"/>
+                <polygon points="11.2,13.88 18.5,9.72 11.2,5.56" fill="#ffffff"/>
+              </svg>
+            </a>
+          </div>
         </div>
         <div class="trust-row">
           <span><i>◎</i> Global delivery</span>
@@ -1607,7 +1453,7 @@
     <a class="footer-slim-brand brand" href="#home" aria-label="AVBIMsoft Solutions home">
       <img src="assets/avbim_emblem.webp" alt="AVBIMsoft Logo Emblem" width="34" height="34" class="brand-emblem">
       <div class="brand-text">
-        <span class="brand-name">AVBIM<span class="soft">soft</span></span>
+        <span class="brand-name"><span class="brand-avbim">AVBIM</span><span class="soft">soft</span></span>
         <span class="brand-sub">SOLUTIONS</span>
       </div>
     </a>
@@ -1701,51 +1547,7 @@
   </form>
 </div>
 
-<!-- Video Modal Lightbox for "How It Works" -->
-<div class="video-modal" id="videoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
-  <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
-  <div class="video-modal-dialog">
-    <div class="video-modal-box">
-      <!-- Modal Header -->
-      <div class="video-modal-header">
-        <div class="video-modal-head-left">
-          <span class="video-modal-pill">
-            <span class="video-pill-pulse"></span>
-            HOW IT WORKS
-          </span>
-          <h3 class="video-modal-title" id="videoModalTitle">AVBIMsoft Reality Capture &amp; BIM Intelligence</h3>
-        </div>
-        <button type="button" class="video-modal-close" id="videoModalClose" aria-label="Close video dialog (Escape)">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
 
-      <!-- Video Player Frame -->
-      <div class="video-player-container">
-        <video class="video-player-el" id="heroVideoPlayer" controls playsinline preload="auto" poster="assets/hero_scan_bim.webp">
-          <source src="assets/how-it-works.mp4" type="video/mp4">
-          <source src="gemini_generated_video_eba974c4.mp4" type="video/mp4">
-          Your browser does not support HTML5 video playback.
-        </video>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="video-modal-footer">
-        <div class="video-tags-list">
-          <span class="video-tag-item"><span>⌖</span> Reality Capture</span>
-          <span class="video-tag-item"><span>⌘</span> Point Cloud to Revit</span>
-          <span class="video-tag-item"><span>◎</span> Drone &amp; GIS Mapping</span>
-        </div>
-        <a href="#workflow" class="video-workflow-jump" id="videoWorkflowJump">
-          Explore Step-by-Step Workflow <span>→</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
 
@@ -2027,71 +1829,39 @@ document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDe
   }
 })();
 
-// How It Works - Interactive Video Modal Player
-(function initVideoModal(){
-  const openBtn = document.getElementById('heroPlayVideoBtn');
-  const modal = document.getElementById('videoModal');
-  const backdrop = document.getElementById('videoModalBackdrop');
-  const closeBtn = document.getElementById('videoModalClose');
-  const videoPlayer = document.getElementById('heroVideoPlayer');
-  const workflowJump = document.getElementById('videoWorkflowJump');
+// How It Works - Video Player Link (Small Window or Next Tab)
+(function initVideoPlayerLink(){
+  const videoLinks = document.querySelectorAll('#heroPlayVideoBtn, .video-trigger-btn');
+  const videoUrl = 'assets/how-it-works.mp4';
 
-  if(!modal || !videoPlayer) return;
+  function playVideoInSmallWindow(e){
+    e.preventDefault();
+    const w = 960;
+    const h = 540;
+    const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+    const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+    const screenWidth = window.innerWidth || document.documentElement.clientWidth || screen.width;
+    const screenHeight = window.innerHeight || document.documentElement.clientHeight || screen.height;
+    const left = Math.max(0, Math.round(((screenWidth - w) / 2) + dualScreenLeft));
+    const top = Math.max(0, Math.round(((screenHeight - h) / 2) + dualScreenTop));
+    const features = `width=${w},height=${h},top=${top},left=${left},resizable=yes,scrollbars=no,status=no,toolbar=no,menubar=no,location=no`;
 
-  function openVideoModal(){
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    let popup = null;
     try {
-      videoPlayer.currentTime = 0;
-      const playPromise = videoPlayer.play();
-      if(playPromise !== undefined){
-        playPromise.catch(err => {
-          console.warn('Video auto-playback deferred:', err);
-        });
-      }
-    } catch(err){
-      console.warn('Playback error:', err);
-    }
-  }
-
-  function closeVideoModal(){
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    try {
-      videoPlayer.pause();
+      popup = window.open(videoUrl, 'AVBIMsoftVideo', features);
     } catch(err){}
-  }
 
-  if(openBtn){
-    openBtn.addEventListener('click', (e)=>{
-      e.preventDefault();
-      openVideoModal();
-    });
-  }
-
-  // Support any other trigger buttons that might exist
-  document.querySelectorAll('.video-trigger-btn').forEach(btn => {
-    btn.addEventListener('click', (e)=>{
-      e.preventDefault();
-      openVideoModal();
-    });
-  });
-
-  if(closeBtn) closeBtn.addEventListener('click', closeVideoModal);
-  if(backdrop) backdrop.addEventListener('click', closeVideoModal);
-
-  if(workflowJump){
-    workflowJump.addEventListener('click', ()=>{
-      closeVideoModal();
-    });
-  }
-
-  window.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape' && modal.classList.contains('is-open')){
-      closeVideoModal();
+    if(!popup || popup.closed || typeof popup.closed === 'undefined'){
+      window.open(videoUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      try {
+        popup.focus();
+      } catch(err){}
     }
+  }
+
+  videoLinks.forEach(link => {
+    link.addEventListener('click', playVideoInSmallWindow);
   });
 })();
 
